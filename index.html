@@ -8,36 +8,47 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f3f4f6;
+            background: url('https://images.unsplash.com/photo-1598870682100-b953048c5e15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
             padding: 20px;
-            max-width: 600px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+        }
+        .container {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.9); /* خلفية بيضاء مع شفافية */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
         }
         h1 {
             text-align: center;
-            color: #4A90E2;
+            color: #2c3e50; /* لون داكن */
+            margin-bottom: 20px;
+            font-size: 2.5em;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             font-weight: bold;
+            color: #2980b9; /* لون أزرق */
         }
         input[type="text"], input[type="file"], select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: border-color 0.3s;
+            padding: 12px;
+            border: 2px solid #3498db; /* لون أزرق فاتح */
+            border-radius: 8px;
+            font-size: 1em;
+            background-color: #ffffff;
+            color: #333;
+            transition: background-color 0.3s, border 0.3s;
         }
         input[type="text"]:focus, select:focus {
-            border-color: #4A90E2;
+            background-color: #ecf0f1; /* تأثير عند التركيز */
+            border-color: #2980b9; /* لون أزرق داكن عند التركيز */
             outline: none;
         }
         .hidden {
@@ -45,84 +56,84 @@
         }
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #4A90E2;
+            padding: 12px;
+            background-color: #3498db; /* لون أزرق فاتح */
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
         button:hover {
-            background-color: #357ABD;
+            background-color: #2980b9; /* تأثير عند التمرير */
+            transform: translateY(-2px);
         }
         .price {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
-            color: #4A90E2;
+            color: #2c3e50; /* لون داكن */
             text-align: center;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>فورمة حفلة التخرج</h1>
-    <form id="graduationForm">
-        <div class="form-group">
-            <label for="name">الاسم (الذي سيطرز على الوشاح):</label>
-            <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-            <label for="backEmbroidery">التطريز على ظهر الوشاح:</label>
-            <input type="text" id="backEmbroidery" required>
-        </div>
-        <div class="form-group">
-            <label for="capAdditions">الإضافات على القبعة:</label>
-            <select id="capAdditions" onchange="showCapAdditions()">
-                <option value="">اختر...</option>
-                <option value="embroidery">تطريز على القبعة</option>
-                <option value="image">إضافة صورة على القبعة</option>
-            </select>
-        </div>
-        <div id="embroideryField" class="hidden form-group">
-            <label for="capEmbroidery">الكتابة التي تريد تطريزها:</label>
-            <input type="text" id="capEmbroidery">
-        </div>
-        <div id="imageField" class="hidden form-group">
-            <label for="capImage">رفع الصورة:</label>
-            <input type="file" id="capImage" accept="image/*">
-        </div>
-        <div class="form-group">
-            <label for="size">القياس:</label>
-            <select id="size">
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>هل تريد إضافة تطريز جانبي على القبعة بسعر 5,000 دينار؟</label>
-            <select id="sideEmbroidery" onchange="showSideEmbroideryField()">
-                <option value="no">لا</option>
-                <option value="yes">نعم</option>
-            </select>
-        </div>
-        <div id="sideEmbroideryField" class="hidden form-group">
-            <label for="sideText">الجملة التي تريد تطريزها:</label>
-            <input type="text" id="sideText">
-        </div>
-        <div class="form-group">
-            <label>السعر:</label>
-            <p id="price" class="price">55,000 دينار عراقي</p>
-        </div>
-        <button type="submit">إرسال</button>
-    </form>
+    <div class="container">
+        <h1>فورمة حفلة التخرج</h1>
+        <form id="graduationForm">
+            <div class="form-group">
+                <label for="name">الاسم (الذي سيطرز على الوشاح):</label>
+                <input type="text" id="name" required placeholder="أدخل الاسم هنا">
+            </div>
+            <div class="form-group">
+                <label for="backEmbroidery">التطريز على ظهر الوشاح:</label>
+                <input type="text" id="backEmbroidery" required placeholder="أدخل نص التطريز هنا">
+            </div>
+            <div class="form-group">
+                <label for="capAdditions">الإضافات على القبعة:</label>
+                <select id="capAdditions" onchange="showCapAdditions()">
+                    <option value="">اختر...</option>
+                    <option value="embroidery">تطريز على القبعة</option>
+                    <option value="image">إضافة صورة على القبعة</option>
+                </select>
+            </div>
+            <div id="embroideryField" class="hidden form-group">
+                <label for="capEmbroidery">الكتابة التي تريد تطريزها:</label>
+                <input type="text" id="capEmbroidery" placeholder="أدخل نص التطريز على القبعة">
+            </div>
+            <div id="imageField" class="hidden form-group">
+                <label for="capImage">رفع الصورة:</label>
+                <input type="file" id="capImage" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="size">القياس:</label>
+                <select id="size">
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>هل تريد إضافة تطريز جانبي على القبعة بسعر 5,000 دينار؟</label>
+                <select id="sideEmbroidery" onchange="showSideEmbroideryField()">
+                    <option value="no">لا</option>
+                    <option value="yes">نعم</option>
+                </select>
+            </div>
+            <div id="sideEmbroideryField" class="hidden form-group">
+                <label for="sideText">الجملة التي تريد تطريزها:</label>
+                <input type="text" id="sideText" placeholder="أدخل نص التطريز الجانبي">
+            </div>
+            <div class="form-group">
+                <label>السعر:</label>
+                <p id="price" class="price">55,000 دينار عراقي</p>
+            </div>
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
 
     <script>
         function showCapAdditions() {
