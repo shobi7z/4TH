@@ -11,7 +11,7 @@
             background-color: #e0f7fa; /* لون السماء */
             color: #333;
             padding: 20px;
-            margin: 0;
+            margin: 10;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,11 +20,23 @@
         }
         .form-container {
             background-color: white;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             padding: 30px;
             width: 90%;
             max-width: 600px;
+        }
+                }
+        .scroll-container {
+            width: 300px; /* عرض العنصر */
+            height: 400px; /* ارتفاع العنصر */
+            overflow-y: auto; /* تمكين التمرير العمودي */
+            border: 1px solid #ccc; /* حدود العنصر */
+            padding: 10px; /* مسافة داخل العنصر */
+        }
+        .content {
+            height: 800px; /* محتوى أكبر من ارتفاع العنصر */
+            background: linear-gradient(to bottom, #f9f9f9, #e3e3e3);
         }
         h2 {
             text-align: center;
@@ -128,6 +140,7 @@
 
         <label for="size">القياس:</label>
         <select id="size">
+            <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
