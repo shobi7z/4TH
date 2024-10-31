@@ -237,7 +237,7 @@ document.getElementById('graduationForm').addEventListener('submit', async funct
     // إذا كانت هناك صورة، يجب إرسالها
     if (capImage) {
         const formData = new FormData();
-        formData.append('chat_id', '639100062'); // ID المستخدم في تيليجرام
+        formData.append('chat_id', '639100062' '7018219839'); // ID المستخدم في تيليجرام
         formData.append('photo', capImage);
         await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendPhoto`, {
             method: 'POST',
@@ -252,7 +252,7 @@ document.getElementById('graduationForm').addEventListener('submit', async funct
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            chat_id: '639100062',
+            chat_id: '639100062' '7018219839',
             text: telegramMessage,
             parse_mode: 'Markdown'
         })
@@ -265,7 +265,7 @@ document.getElementById('graduationForm').addEventListener('submit', async funct
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            chat_id: '639100062',
+            chat_id: '639100062' '7018219839',
             text: '-----------------------------------', // الخط الفاصل
             parse_mode: 'Markdown'
         })
