@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نموذج حفلة التخرج</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-    <style>
+ <style>
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #e0f7fa; /* لون السماء */
             color: #333;
             padding: 20px;
-            margin: 10;
+            margin: 0; /* إزالة الهامش الافتراضي */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,14 +25,8 @@
             padding: 30px;
             width: 90%;
             max-width: 600px;
-        }
-                }
-        .scroll-container {
-            width: 300px; /* عرض العنصر */
-            height: 800px; /* ارتفاع العنصر */
-            overflow-y: auto; /* تمكين التمرير العمودي */
-            border: 1px solid #ccc; /* حدود العنصر */
-            padding: 10px; /* مسافة داخل العنصر */
+            overflow-y: auto; /* تمكين التمرير العمودي في الحاوية */
+            max-height: 80vh; /* أقصى ارتفاع للحاوية */
         }
         .content {
             height: 800px; /* محتوى أكبر من ارتفاع العنصر */
@@ -86,7 +80,7 @@
         .separator {
             border-top: 2px dashed #00796b; /* خط فاصل متقطع */
             margin: 20px 0; /* مساحة فوق وتحت الخط */
-              }
+        }
         .success-message {
             position: absolute; /* جعلها فوق النموذج */
             top: 50%;
