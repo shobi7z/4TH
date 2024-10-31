@@ -25,7 +25,6 @@
             padding: 30px;
             width: 90%;
             max-width: 600px;
-            position: relative; /* لتحديد موقع الرسالة */
         }
         h2 {
             text-align: center;
@@ -75,7 +74,7 @@
         .separator {
             border-top: 2px dashed #00796b; /* خط فاصل متقطع */
             margin: 20px 0; /* مساحة فوق وتحت الخط */
-        }
+              }
         .success-message {
             position: absolute; /* جعلها فوق النموذج */
             top: 50%;
@@ -159,14 +158,10 @@
 
         <button type="submit">إرسال</button>
     </form>
-
-    <div id="successMessage" class="success-message">
-        تم إرسال الطلب بنجاح!
-    </div>
-
-    <div class="copyright">
+        <div class="copyright">
         تم انشاء الصفحة من قبل مجتبى كريم
-    </div>
+            <div id="successMessage" class="success-message">
+        تم إرسال الطلب بنجاح!
 </div>
 
 <script>
@@ -235,48 +230,126 @@ document.getElementById('graduationForm').addEventListener('submit', async funct
 `;
 
     // إذا كانت هناك صورة، يجب إرسالها
-    if (capImage) {
-        const formData = new FormData();
-        formData.append('chat_id', '639100062' '7018219839'); // ID المستخدم في تيليجرام
-        formData.append('photo', capImage);
-        await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendPhoto`, {
-            method: 'POST',
-            body: formData
-        });
-    }
-
-    // إرسال رسالة تيليجرام
-    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+// إذا كانت هناك صورة، يجب إرسالها
+// إذا كانت هناك صورة، يجب إرسالها
+if (capImage) {
+    const formData = new FormData();
+    formData.append('chat_id', '639100062'); // ID المستخدم في تيليجرام
+    formData.append('photo', capImage);
+    
+    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendPhoto`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: '639100062' '7018219839',
-            text: telegramMessage,
-            parse_mode: 'Markdown'
-        })
+        body: formData
     });
 
-    // إضافة خط فاصل
-    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    // إرسال الصورة إلى المعرف الثاني
+    const formDataForSecondID = new FormData();
+    formDataForSecondID.append('chat_id', '336437179'); // ID المستخدم في تيليجرام
+    formDataForSecondID.append('photo', capImage);
+
+    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendPhoto`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: '639100062' '7018219839',
-            text: '-----------------------------------', // الخط الفاصل
-            parse_mode: 'Markdown'
-        })
+        body: formDataForSecondID
     });
 
+    // إرسال الصورة إلى المعرف الثالث
+    const formDataForThirdID = new FormData();
+    formDataForThirdID.append('chat_id', '693561503'); // ID المستخدم في تيليجرام
+    formDataForThirdID.append('photo', capImage);
+
+    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendPhoto`, {
+        method: 'POST',
+        body: formDataForThirdID
+    });
+}
+
+// إرسال رسالة تيليجرام إلى المعرف الأول
+await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        chat_id: '639100062', // ID المستخدم في تيليجرام
+        text: telegramMessage,
+        parse_mode: 'Markdown'
+    })
+});
+
+// إرسال رسالة تيليجرام إلى المعرف الثاني
+await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        chat_id: '336437179', // ID المستخدم في تيليجرام
+        text: telegramMessage,
+        parse_mode: 'Markdown'
+    })
+});
+
+// إرسال رسالة تيليجرام إلى المعرف الثالث
+await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        chat_id: '693561503', // ID المستخدم في تيليجرام
+        text: telegramMessage,
+        parse_mode: 'Markdown'
+    })
+});
+
+// إضافة خط فاصل إلى المعرف الأول
+await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        chat_id: '639100062', // ID المستخدم في تيليجرام
+        text: '-----------------------------------', // الخط الفاصل
+        parse_mode: 'Markdown'
+    })
+});
+
+// إضافة خط فاصل إلى المعرف الثاني
+await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        chat_id: '336437179', // ID المستخدم في تيليجرام
+        text: '-----------------------------------', // الخط الفاصل
+        parse_mode: 'Markdown'
+    })
+});
+
+// إضافة خط فاصل إلى المعرف الثالث
+await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        chat_id: '693561503', // ID المستخدم في تيليجرام
+        text: '-----------------------------------', // الخط الفاصل
+        parse_mode: 'Markdown'
+    })
+});
+
+   
+    // إظهار رسالة النجاح
     const successMessage = document.getElementById('successMessage');
     successMessage.style.display = 'block';
-     // إخفاء الرسالة بعد 3 ثواني
+
+    // إخفاء الرسالة بعد 3 ثواني
     setTimeout(() => {
         successMessage.style.display = 'none';
-    }, 10000);
+    }, 3000);
 });
 </script>
 </body>
