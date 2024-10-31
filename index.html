@@ -3,169 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فورمة حفلة التخرج</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>نموذج حفلة التخرج</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background: url('https://images.unsplash.com/photo-1598870682100-b953048c5e15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #e0f7fa; /* لون السماء */
             color: #333;
             padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: right; /* محاذاة النص لليمين */
         }
-        .container {
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.9); /* خلفية بيضاء مع شفافية */
-            padding: 30px;
+        .form-container {
+            background-color: white;
             border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            margin: 0 auto;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            position: relative; /* لتحديد موقع الرسالة */
         }
-        h1 {
+        h2 {
             text-align: center;
-            color: #2c3e50; /* لون داكن */
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        .form-group {
+            color: #00796b; /* لون السماء الداكن */
             margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #2980b9; /* لون أزرق */
+            margin: 10px 0 5px;
+            font-weight: bold; /* جعل الخط غامق */
         }
         input[type="text"], input[type="file"], select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #3498db; /* لون أزرق فاتح */
-            border-radius: 8px;
-            font-size: 1em;
-            background-color: #ffffff;
-            color: #333;
-            transition: background-color 0.3s, border 0.3s;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #00796b; /* لون السماء الداكن */
+            border-radius: 5px;
+            transition: border-color 0.3s; /* تأثير عند التركيز */
         }
         input[type="text"]:focus, select:focus {
-            background-color: #ecf0f1; /* تأثير عند التركيز */
-            border-color: #2980b9; /* لون أزرق داكن عند التركيز */
-            outline: none;
+            border-color: #004d40; /* لون التركيز */
+            outline: none; /* إزالة الإطار الافتراضي */
+        }
+        button {
+            background-color: #00796b; /* لون السماء الداكن */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s; /* تأثير عند التحويم */
+        }
+        button:hover {
+            background-color: #004d40; /* لون التحويم */
         }
         .hidden {
             display: none;
         }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #3498db; /* لون أزرق فاتح */
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        #price {
+            font-weight: bold; /* جعل السعر غامق */
+            font-size: 18px; /* حجم أكبر للسعر */
+            text-align: center; /* محاذاة السعر للوسط */
+            margin-top: 20px;
         }
-        button:hover {
-            background-color: #2980b9; /* تأثير عند التمرير */
-            transform: translateY(-2px);
+        .separator {
+            border-top: 2px dashed #00796b; /* خط فاصل متقطع */
+            margin: 20px 0; /* مساحة فوق وتحت الخط */
         }
-        .price {
-            font-size: 22px;
-            font-weight: bold;
-            color: #2c3e50; /* لون داكن */
+        .success-message {
+            position: absolute; /* جعلها فوق النموذج */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #c8e6c9; /* لون خلفية الرسالة */
+            color: #2e7d32; /* لون النص */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
-            margin-top: 10px;
+            display: none; /* مخفية بشكل افتراضي */
+            z-index: 10; /* لتكون فوق كل شيء */
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555; /* لون رمادي */
+            font-style: italic; /* خط مائل */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>فورمة حفلة التخرج</h1>
-        <form id="graduationForm">
-            <div class="form-group">
-                <label for="name">الاسم (الذي سيطرز على الوشاح):</label>
-                <input type="text" id="name" required placeholder="أدخل الاسم هنا">
-            </div>
-            <div class="form-group">
-                <label for="backEmbroidery">التطريز على ظهر الوشاح:</label>
-                <input type="text" id="backEmbroidery" required placeholder="أدخل نص التطريز هنا">
-            </div>
-            <div class="form-group">
-                <label for="capAdditions">الإضافات على القبعة:</label>
-                <select id="capAdditions" onchange="showCapAdditions()">
-                    <option value="">اختر...</option>
-                    <option value="embroidery">تطريز على القبعة</option>
-                    <option value="image">إضافة صورة على القبعة</option>
-                </select>
-            </div>
-            <div id="embroideryField" class="hidden form-group">
-                <label for="capEmbroidery">الكتابة التي تريد تطريزها:</label>
-                <input type="text" id="capEmbroidery" placeholder="أدخل نص التطريز على القبعة">
-            </div>
-            <div id="imageField" class="hidden form-group">
-                <label for="capImage">رفع الصورة:</label>
-                <input type="file" id="capImage" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="size">القياس:</label>
-                <select id="size">
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>هل تريد إضافة تطريز جانبي على القبعة بسعر 5,000 دينار؟</label>
-                <select id="sideEmbroidery" onchange="showSideEmbroideryField()">
-                    <option value="no">لا</option>
-                    <option value="yes">نعم</option>
-                </select>
-            </div>
-            <div id="sideEmbroideryField" class="hidden form-group">
-                <label for="sideText">الجملة التي تريد تطريزها:</label>
-                <input type="text" id="sideText" placeholder="أدخل نص التطريز الجانبي">
-            </div>
-            <div class="form-group">
-                <label>السعر:</label>
-                <p id="price" class="price">55,000 دينار عراقي</p>
-            </div>
-            <button type="submit">إرسال</button>
-        </form>
+
+<div class="form-container">
+    <h2>نموذج حفلة التخرج</h2>
+    <form id="graduationForm">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" required>
+
+        <label for="backEmbroidery">تطريز الوشاح (الخلفي):</label>
+        <input type="text" id="backEmbroidery" required>
+
+        <label for="capAdditions">الإضافات على القبعة:</label>
+        <select id="capAdditions" onchange="toggleCapOptions()">
+            <option value="none">-- اختر --</option>
+            <option value="embroidery">تطريز</option>
+            <option value="image">إضافة صورة</option>
+        </select>
+
+        <div id="capEmbroideryContainer" class="hidden">
+            <label for="capEmbroidery">النص المراد تطريزه على القبعة:</label>
+            <input type="text" id="capEmbroidery">
+        </div>
+        
+        <div id="capImageContainer" class="hidden">
+            <label for="capImage">ارفع الصورة:</label>
+            <input type="file" id="capImage" accept="image/*">
+        </div>
+
+        <label for="size">القياس:</label>
+        <select id="size">
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+
+        <label>هل تريد إضافة تطريز جانبي على القبعة بسعر 5,000 دينار؟</label>
+        <label><input type="radio" name="sideEmbroidery" value="yes" onchange="toggleSideText()" required> نعم</label>
+        <label><input type="radio" name="sideEmbroidery" value="no" onchange="toggleSideText()" required> لا</label>
+        
+        <div id="sideTextContainer" class="hidden">
+            <label for="sideText">الجملة المراد تطريزها:</label>
+            <input type="text" id="sideText">
+        </div>
+
+        <label>هل تريد إضافة تطريز على الروب بسعر 10,000 دينار؟</label>
+        <label><input type="radio" name="robeEmbroidery" value="yes" onchange="toggleRobeText()" required> نعم</label>
+        <label><input type="radio" name="robeEmbroidery" value="no" onchange="toggleRobeText()" required> لا</label>
+        
+        <div id="robeTextContainer" class="hidden">
+            <label for="robeText">الجملة المراد تطريزها على الروب:</label>
+            <input type="text" id="robeText">
+        </div>
+
+        <div>
+            <p id="price">السعر: 55,000 دينار عراقي</p>
+        </div>
+
+        <button type="submit">إرسال</button>
+    </form>
+
+    <div id="successMessage" class="success-message">
+        تم إرسال الطلب بنجاح!
     </div>
 
-    <script>
-        function showCapAdditions() {
-            const capAdditions = document.getElementById('capAdditions').value;
-            document.getElementById('embroideryField').classList.add('hidden');
-            document.getElementById('imageField').classList.add('hidden');
+    <div class="copyright">
+        تم انشاء الصفحة من قبل مجتبى كريم
+    </div>
+</div>
 
-            if (capAdditions === 'embroidery') {
-                document.getElementById('embroideryField').classList.remove('hidden');
-            } else if (capAdditions === 'image') {
-                document.getElementById('imageField').classList.remove('hidden');
-            }
-        }
+<script>
+function toggleCapOptions() {
+    const capAdditions = document.getElementById('capAdditions').value;
+    document.getElementById('capEmbroideryContainer').classList.toggle('hidden', capAdditions !== 'embroidery');
+    document.getElementById('capImageContainer').classList.toggle('hidden', capAdditions !== 'image');
+}
 
-        function showSideEmbroideryField() {
-            const sideEmbroidery = document.getElementById('sideEmbroidery').value;
-            document.getElementById('sideEmbroideryField').classList.toggle('hidden', sideEmbroidery === 'no');
-            updatePrice();
-        }
+function toggleSideText() {
+    const sideEmbroidery = document.querySelector('input[name="sideEmbroidery"]:checked').value;
+    document.getElementById('sideTextContainer').classList.toggle('hidden', sideEmbroidery === 'no');
+    updatePrice(); // تحديث السعر عند اختيار الجانبي
+}
 
-        function updatePrice() {
-            const basePrice = 55000;
-            const sideEmbroidery = document.getElementById('sideEmbroidery').value;
-            const priceElement = document.getElementById('price');
-            let finalPrice = basePrice;
+function toggleRobeText() {
+    const robeEmbroidery = document.querySelector('input[name="robeEmbroidery"]:checked').value;
+    document.getElementById('robeTextContainer').classList.toggle('hidden', robeEmbroidery === 'no');
+    updatePrice(); // تحديث السعر عند اختيار الروب
+}
 
-            if (sideEmbroidery === 'yes') {
-                finalPrice += 5000;
-            }
+function updatePrice() {
+    let basePrice = 55000; // السعر الأساسي
+    const sideEmbroidery = document.querySelector('input[name="sideEmbroidery"]:checked');
+    const robeEmbroidery = document.querySelector('input[name="robeEmbroidery"]:checked');
 
-            priceElement.textContent = finalPrice.toLocaleString() + ' دينار عراقي';
-        }
-    </script>
+    if (sideEmbroidery && sideEmbroidery.value === 'yes') {
+        basePrice += 5000; // إضافة 5000 دينار للتطريز الجانبي
+    }
+    if (robeEmbroidery && robeEmbroidery.value === 'yes') {
+        basePrice += 10000; // إضافة 10000 دينار للتطريز على الروب
+    }
+
+    document.getElementById('price').innerText = `السعر: ${basePrice} دينار عراقي`;
+}
+
+document.getElementById('graduationForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const backEmbroidery = document.getElementById('backEmbroidery').value;
+    const capAdditions = document.getElementById('capAdditions').value;
+    const capEmbroidery = document.getElementById('capEmbroidery').value;
+    const capImage = document.getElementById('capImage').files[0];
+    const size = document.getElementById('size').value;
+    const sideEmbroidery = document.querySelector('input[name="sideEmbroidery"]:checked').value;
+    const sideText = document.getElementById('sideText').value;
+    const robeEmbroidery = document.querySelector('input[name="robeEmbroidery"]:checked').value;
+    const robeText = document.getElementById('robeText').value;
+
+    // حساب السعر
+    let price = 55000;
+    if (sideEmbroidery === 'yes') price += 5000;
+    if (robeEmbroidery === 'yes') price += 10000;
+
+    // إعداد رسالة تيليجرام
+    let telegramMessage = `
+📝 تفاصيل الطلب:
+- الاسم: ${name}
+- تطريز الوشاح الخلفي: ${backEmbroidery}
+- إضافات القبعة: ${capAdditions === 'embroidery' ? `تطريز: ${capEmbroidery}` : 'لا يوجد'}
+- القياس: ${size}
+- تطريز جانبي: ${sideEmbroidery === 'yes' ? `نعم (${sideText})` : 'لا'}
+- تطريز على الروب: ${robeEmbroidery === 'yes' ? `نعم (${robeText})` : 'لا'}
+- السعر النهائي: ${price} دينار عراقي
+`;
+
+    // إذا كانت هناك صورة، يجب إرسالها
+    if (capImage) {
+        const formData = new FormData();
+        formData.append('chat_id', '639100062'); // ID المستخدم في تيليجرام
+        formData.append('photo', capImage);
+        await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendPhoto`, {
+            method: 'POST',
+            body: formData
+        });
+    }
+
+    // إرسال رسالة تيليجرام
+    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: '639100062',
+            text: telegramMessage,
+            parse_mode: 'Markdown'
+        })
+    });
+
+    // إضافة خط فاصل
+    await fetch(`https://api.telegram.org/bot7827388497:AAFge_dNYhBGYkcyUU3K5kc_4rVEBnCvCjk/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: '639100062',
+            text: '-----------------------------------', // الخط الفاصل
+            parse_mode: 'Markdown'
+        })
+    });
+
+    const successMessage = document.getElementById('successMessage');
+    successMessage.style.display = 'block';
+     // إخفاء الرسالة بعد 3 ثواني
+    setTimeout(() => {
+        successMessage.style.display = 'none';
+    }, 10000);
+});
+</script>
 </body>
 </html>
